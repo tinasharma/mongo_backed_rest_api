@@ -1,12 +1,6 @@
 require('angular/angular');
 var angular = window.angular;
 
-var parcelApp = angular.module('parcelstream', []);
+var parcelStreamApp = angular.module('ParcelStreamApp', []);
 
-parcelApp.controller('GreetingController', ['$scope', function($scope) {
-  $scope.greeting = 'Mailing service!';
-
-  $scope.alertGreeting = function() {
-    alert($scope.greeting);
-  };
-}]);
+require('./parcels/parcels')(parcelStreamApp);

@@ -6,15 +6,59 @@
   <title>Parcel site</title>
 </head>
 
-<body data-ng-app="parcelstream">
-  <main data-ng-controller = 'GreetingController'>
-    <h1>The parcel's App!!!!</h1>
-    <h2>{{greeting}}</h2>
-    <input type="text" data-ng-model="greeting">
-    <button data-ng-click="alertGreeting()">Parcel it!</button>
+<body data-ng-app="ParcelStreamApp">
+  <h1>parcels, parcels Everywhere!</h1>
+  <main data-ng-controller="ParcelsController" data-ng-init="getAll()">
+    <ul id="errorslist">
+      <li data-ng-repeat="error in errors">{{error}}</li>
+    </ul>
+
+    <form name="newParcelForm" data-ng-submit="create(newParcel)">
+      <h2>New parcel:</h2>
+
+      <label for="newParcelName">Name:</label>
+      <input type="text" id="newParcelName" required data-ng-model="newParcel.name">
+
+      <label for="newParcelSize">Parcel size: </label>
+      <input type="text" id="newParcelSize" data-ng-model="newParcel.size" placeholder="small/medium/large">
+
+      <label for="newParcelWeight">Parcel weight:</label>
+      <input type="text" id="newParcelWeight" data-ng-model="newParcel.weight" placeholder="less than 10 lbs">
+
+      <button type="submit" data-ng-disabled="newParcelForm.$invalid">Create New Parcel</button>
+    </form>
+
+    <ul id="parcellist">
+      <li data-ng-repeat="parcel in parcels">
+        {{parcel.name}}
+
+        <form name="parcelForm{{parcel._id}}"  data-ng-if="parcel.editing">
+          <h2>Update {{parcel.name}}</h2>
+
+          <label for="parcelName{{parcel._id}}">Name:</label>
+          <input type="text" id="parcelName{{parcel._id}}" required data-ng-model="parcel.name">
+
+          <label for="parcelSize{{parcel._id}}">Size:</label>
+          <input type="text" id="parcelSize{{parcel._id}}" data-ng-model="parcel.size" placeholder="small/medium/large">
+
+          <label for="parcelWeight{{parcel._id}}">Weight:</label>
+          <input type="text" id="parcelWeight{{parcel._id}}" data-ng-model="parcel.weight" placeholder="less than 10 lbs">
+
+          <button type="submit" data-ng-click="update(parcel)">Update</button>
+          <button data-ng-click="reset(form); parcel.editing=false">Don't update</button>
+
+        </form>
+
+        <button data-ng-if="!parcel.editing" data-ng-click="parcel.editing = true">Update</button>
+
+        <button data-ng-if="!parcel.editing" data-ng-click="remove(parcel)">Remove This Parcel!</button>
+
+      </li>
+    </ul>
   </main>
-  <script src="bundle.js"></script>
+  <script src="/bundle.js"></script>
 </body>
+
 
 </html>
 
