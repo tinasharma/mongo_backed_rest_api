@@ -3,8 +3,7 @@ module.exports = function(app) {
     $scope.parcels = [];
     $scope.newParcel = null;
     $scope.errors = [];
-    $scope.master = {};
-    $scope.master = angular.copy($scope.parcels);
+    $scope.updatingParcels = {};
     var defaults = {size: 'small, medium, large', weight: 'less than 10 lbs.'};
     $scope.newParcel = Object.create(defaults);
 
@@ -36,14 +35,21 @@ module.exports = function(app) {
           $scope.errors.push('could not update: ' + parcel.name + ' parcel');
           console.log(err.data);
       });
-
     };
-    $scope.reset = function() {
+
+    $scope.startUpdate = function(parcel) {
+      parcel.editing = true;
+      $scope.updatingParcels[parcel._id] = {name: parcel.name, size: parcel.size, weight: parcel.weight};
+    };
+
+    $scope.reset = function(parcel) {
+      var oldParcel = $scope.updatingParcels[parcel._id];
       $scope.parcel = angular.copy($scope.master);
-      //$scope.getAll();
+      parcel.name = oldParcel.name;
+      parcel.size = oldParcel.size;
+      parcel.weight = oldParcel.weight;
+      parcel.editing = false;
     };
-
-    //$scope.reset();
 
     $scope.remove = function(parcel) {
       $scope.parcels.splice($scope.parcels.indexOf(parcel), 1);
