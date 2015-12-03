@@ -2,7 +2,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var Parcel = require(__dirname + '/../models/parcel.js');
 var handleError = require(__dirname + '/../lib/handleServerError.js');
-//var eatAuth = require(__dirname + '/../lib/eat_auth.js');
 var parcelsRouter = module.exports = exports = express.Router();
 
 parcelsRouter.get('/parcels', function(req, res) {

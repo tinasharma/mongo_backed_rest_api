@@ -40,7 +40,7 @@ module.exports = function(app) {
     };
     $scope.reset = function() {
       $scope.parcel = angular.copy($scope.master);
-      $scope.getAll();
+      //$scope.getAll();
     };
 
     //$scope.reset();
