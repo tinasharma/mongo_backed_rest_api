@@ -17,7 +17,7 @@ gulp.task('webpack:dev',function() {
 });
 
 gulp.task('webpack:test', function() {
-  return gulp.src('test/client/test_entry.js');
+  return gulp.src('test/client/test_entry.js')
   .pipe(webpack({
     output: {
       filename: 'test_bundle.js'
