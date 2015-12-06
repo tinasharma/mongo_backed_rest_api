@@ -1,11 +1,12 @@
+var angular = window.angular;
 module.exports = function(app) {
   app.controller('ParcelsController', ['$scope', '$http', function($scope, $http) {
     $scope.parcels = [];
     $scope.newParcel = null;
     $scope.errors = [];
     $scope.updatingParcels = {};
-    var defaults = {size: 'small, medium, large', weight: 'less than 10 lbs.'};
-    $scope.newParcel = Object.create(defaults);
+    $scope.defaults = {size: 'small', weight: '3'};
+    $scope.newParcel = angular.copy($scope.defaults);
 
     $scope.getAll = function() {
       $http.get('/api/parcels')
@@ -20,7 +21,7 @@ module.exports = function(app) {
       $http.post('/api/parcels', parcel)
         .then(function(res) {
           $scope.parcels.push(res.data);
-          $scope.newParcel = null;
+          $scope.newParcel = angular.copy($scope.defaults);
         }, function(err) {
           console.log(err.data);
         });
