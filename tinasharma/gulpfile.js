@@ -15,8 +15,7 @@ gulp.task('css:dev', function() {
     'app/css/base.css',
     'app/css/layout.css',
     'app/css/module.css',
-    'app/css/state.css',
-    'app/css/theme.css'])
+    'app/css/state.css'])
   .pipe(concatCSS('styles.min.css'))
   .pipe(minifyCss())
   .pipe(gulp.dest('build/'))

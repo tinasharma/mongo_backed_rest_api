@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Parcel site</title>
+  <link rel="stylesheet" href="/styles.min.css" type="text/css">
 </head>
 
 <body data-ng-app="ParcelStreamApp">
@@ -13,7 +14,7 @@
       <li data-ng-repeat="error in errors">{{error}}</li>
     </ul>
 
-    <form name="newParcelForm" data-ng-submit="create(newParcel)">
+    <form class="containers" name="newParcelForm" data-ng-submit="create(newParcel)">
       <h2>New parcel:</h2>
 
       <label for="newParcelName">Name:</label>
@@ -32,7 +33,7 @@
       <li data-ng-repeat="parcel in parcels">
         {{parcel.name}}
 
-        <form name="parcelForm{{parcel._id}}" data-ng-submit="update(parcel)" data-ng-if="parcel.editing">
+        <form class="row" name="parcelForm{{parcel._id}}" data-ng-submit="update(parcel)" data-ng-if="parcel.editing">
           <h2>Update {{parcel.name}}</h2>
 
           <label for="parcelName{{parcel._id}}">Name:</label>
@@ -49,14 +50,15 @@
 
         </form>
 
-        <button data-ng-if="!parcel.editing" data-ng-click="startUpdate(parcel)">Update</button>
+        <button id="update-btn" data-ng-if="!parcel.editing" data-ng-click="startUpdate(parcel)">Update</button>
 
-        <button data-ng-if="!parcel.editing" data-ng-click="remove(parcel)">Remove This Parcel!</button>
+        <button id="delete-btn" data-ng-if="!parcel.editing" data-ng-click="remove(parcel)">Remove This Parcel!</button>
 
       </li>
     </ul>
   </main>
   <script src="/bundle.js"></script>
+
 </body>
 
 
