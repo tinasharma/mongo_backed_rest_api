@@ -24,7 +24,7 @@ gulp.task('static:dev',function() {
 // });
 
 gulp.task('sass:dev', function() {
-  gulp.src('./app/sass/**/*.scss') //gulp.src('./app/sass/**/*.scss')
+  gulp.src('./app/sass/**/*.scss')
     .pipe(maps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(minifyCss())
