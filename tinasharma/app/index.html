@@ -34,7 +34,7 @@
         {{parcel.name}}
 
         <form class="row" name="parcelForm{{parcel._id}}" data-ng-submit="update(parcel)" data-ng-if="parcel.editing">
-          <h2>Update {{parcel.name}}</h2>
+          <h2>Update: {{parcel.name}}</h2>
 
           <label for="parcelName{{parcel._id}}">Name:</label>
           <input type="text" id="parcelName{{parcel._id}}" required data-ng-model="parcel.name">
