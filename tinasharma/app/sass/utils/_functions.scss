@@ -1,0 +1,14 @@
+%large-type {
+  font-size: 65 / 17 * 1em;
+  line-height: 1.17391em;
+  margin-bottom: 0.3913em;
+  color: #2F4F4F;
+}
+
+@mixin default-box {
+  border: 1px solid black;
+  box-shadow: 5px 5px 5px black;
+  width: 75%;
+  margin-left: 80px;
+
+}

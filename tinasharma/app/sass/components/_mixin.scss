@@ -1,0 +1,15 @@
+@mixin btn-info($background, $color, $width, $f-size) {
+  font-size: font-size($f-size);
+  letter-spacing: .125em;
+  display: inline-flex;
+  justify-content: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  width: $width;
+  padding: 1em;
+  border: solid 1px;
+  background-color: $background;
+  color: $color;
+  border-color: $color;
+  border-radius: .5em;
+}
