@@ -1,30 +1,43 @@
 var angular = window.angular;
 module.exports = function(app) {
-  app.controller('ParcelsController', ['$scope', '$http', function($scope, $http) {
+  app.controller('ParcelsController', ['$scope', '$http', 'cfResource', function($scope, $http, cfResource) {
     $scope.parcels = [];
     $scope.newParcel = null;
     $scope.errors = [];
     $scope.updatingParcels = {};
     $scope.defaults = {size: 'small', weight: '3'};
     $scope.newParcel = angular.copy($scope.defaults);
+    var parcelsResource = cfResource('parcels');
 
     $scope.getAll = function() {
-      $http.get('/api/parcels')
-        .then(function(res) {
-          $scope.parcels = res.data;
-        }, function(err) {
-          console.log(err.data);
-        });
+      parcelsResource.getAll(function(err, data) {
+        if (err) return err;
+
+        $scope.parcels = data;
+      });
+      //remove the following because its done in cfResource
+      // $http.get('/api/parcels')
+      //   .then(function(res) {
+      //     $scope.parcels = res.data;
+      //   }, function(err) {
+      //     console.log(err.data);
+      //   });
     };
 
     $scope.create = function(parcel) {
-      $http.post('/api/parcels', parcel)
-        .then(function(res) {
-          $scope.parcels.push(res.data);
-          $scope.newParcel = angular.copy($scope.defaults);
-        }, function(err) {
-          console.log(err.data);
-        });
+      parcelsResource.create(parcel, function(err, data) {
+        if (err) return err;
+        $scope.parcels.push(data);
+        $scope.newParcel = angular.copy($scope.defaults);
+      });
+      //remove the following because its done in cfResource
+      // $http.post('/api/parcels', parcel)
+      //   .then(function(res) {
+      //     $scope.parcels.push(res.data);
+      //     $scope.newParcel = angular.copy($scope.defaults);
+      //   }, function(err) {
+      //     console.log(err.data);
+      //   });
     };
 
     $scope.update = function(parcel) {
@@ -45,7 +58,7 @@ module.exports = function(app) {
 
     $scope.reset = function(parcel) {
       var oldParcel = $scope.updatingParcels[parcel._id];
-      $scope.parcel = angular.copy($scope.master);
+      $scope.parcel = angular.copy($scope.defaults);
       parcel.name = oldParcel.name;
       parcel.size = oldParcel.size;
       parcel.weight = oldParcel.weight;

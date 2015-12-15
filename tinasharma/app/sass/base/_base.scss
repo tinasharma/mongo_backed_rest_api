@@ -19,6 +19,10 @@ h1 {
   @extend %large-type;
 }
 
+h6 {
+  text-align: center;
+}
+
 form {
   @include default-box;
   background-color: $background-color;
@@ -39,4 +43,17 @@ label {
 button,
 input {
 
+}
+
+#cancelbtn {
+  margin-left:500px;
+}
+
+input {
+  margin: 2em auto;
+  display: block;
+}
+
+#greeting {
+  font-size: 80%;
 }

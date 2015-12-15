@@ -8,13 +8,24 @@
 </head>
 
 <body data-ng-app="ParcelStreamApp">
+
+<div id="greeting" data-dummy-directive data-greeting="please enter your name"></div>
+
+
   <h1>Parcels App!</h1>
-  <main data-ng-controller="ParcelsController" data-ng-init="getAll()">
+
+  <main data-ng-view></main>
+
+  <!-- <main data-ng-controller="ParcelsController" data-ng-init="getAll()">
     <ul id="errorslist">
       <li data-ng-repeat="error in errors">{{error}}</li>
     </ul>
 
-    <form class="containers" name="newParcelForm" data-ng-submit="create(newParcel)">
+    <div data-parcel-transclude-directive>
+      <p>awesome transclusion</p>
+    </div> -->
+
+    <!-- <form class="containers" name="newParcelForm" data-ng-submit="create(newParcel)">
       <h2>New parcel:</h2>
 
       <label for="newParcelName">Name:</label>
@@ -28,10 +39,10 @@
 
       <button type="submit" data-ng-disabled="newParcelForm.$invalid">Create New Parcel</button>
     </form>
-
-    <ul id="parcellist">
+ -->
+    <!-- <ul id="parcellist">
       <li data-ng-repeat="parcel in parcels">
-        {{parcel.name}}
+        <div data-parcel-directive data-parcel="parcel"></div>
 
         <form class="row" name="parcelForm{{parcel._id}}" data-ng-submit="update(parcel)" data-ng-if="parcel.editing">
           <h2>Update: {{parcel.name}}</h2>
@@ -56,7 +67,7 @@
 
       </li>
     </ul>
-  </main>
+  </main> -->
   <script src="/bundle.js"></script>
 
 </body>

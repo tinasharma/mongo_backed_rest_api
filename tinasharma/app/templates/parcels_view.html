@@ -1,0 +1,38 @@
+<section data-ng-controller="ParcelsController" data-ng-init="getAll()">
+  <ul id="errorslist">
+    <li data-ng-repeat="error in errors">{{error}}</li>
+  </ul>
+
+  <div data-parcel-form-directive
+    data-button-text="Create New Parcel"
+    data-form-name="newParcelForm"
+    data-heading-text="Create A New Parcel"
+    data-parcel="newParcel"
+    data-save="create(parcel)"
+  ></div>
+
+  <div data-list-directive data-title="parcels">
+    <li data-ng-repeat="parcel in parcels">
+      <div data-parcel-directive data-parcel="parcel"></div>
+      <div data-parcel-form-directive
+        data-ng-if="parcel.editing"
+        data-button-text="Save Parcel!"
+        data-form-name="edit{{parcel._id}}"
+        data-parcel="parcel"
+        data-heading-text="Editing {{parcel.name}}"
+        data-save="update(parcel)"
+        data-input-hidden="show"
+      >
+        <button id="cancelbtn" data-ng-click="reset(parcel)">Cancel</button>
+      </div>
+
+      <div id="location" data-parcel-transclude-directive data-message-one="Parcels are delivered at">
+        {{parcel.location}}
+      </div>
+
+      <button data-ng-if="!parcel.editing" data-ng-click="startUpdate(parcel)">Update!</button>
+
+      <button data-ng-if="!parcel.editing" data-ng-click="remove(parcel)">Delete!</button>
+    </li>
+  </ul>
+</section>

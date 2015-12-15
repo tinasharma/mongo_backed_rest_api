@@ -1,0 +1,18 @@
+<div>
+  <form name="{{formName}}" data-ng-submit="save({parcel: parcel})">
+    <h2>{{headingText}}</h2>
+
+    <label for="parcelName">Name:</label>
+    <input type="text" id="parcelName" required data-ng-model="parcel.name">
+
+    <label for="parcelSize">Parcel Size: </label>
+    <input type="text" id="parcelSize" data-ng-model="parcel.size" placeholder="small,medium,large">
+
+    <label for="parcelWeight">Weight:</label>
+    <input type="text" id="parcelWeight" data-ng-model="parcel.weight" placeholder="less than 10 lbs.">
+
+    <button type="submit">{{buttonText}}</button>
+
+  </form>
+  <ng-transclude></ng-transclude>
+</div>
